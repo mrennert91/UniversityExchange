@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--LOGO-->
+    <dimen name="logo_width">100dp</dimen>
+    <dimen name="logo_height">100dp</dimen>
+    <dimen name="logo_wraper_width">210dp</dimen>
+    <dimen name="logo_wraper_height">210dp</dimen>
+    <dimen name="logo_wraper_padding">33dp</dimen>
+</resources>

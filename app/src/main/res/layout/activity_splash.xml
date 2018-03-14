@@ -7,7 +7,44 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         tools:context="androidappteam.com.universityexchange.SplashActivity">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:translationZ="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/uex_loading_progress_bar"
+                android:layout_width="@dimen/logo_wraper_width"
+                android:layout_height="@dimen/logo_wraper_height"
+                android:layout_centerInParent="true"
+                android:indeterminate="false"
+                android:indeterminateBehavior="cycle"
+                android:indeterminateTint="@color/colorCategoryTitle"
+                android:pointerIcon="none" />
+
+            <RelativeLayout
+                android:id="@+id/uex_logo_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/logo_wraper_padding"
+                tools:background="@drawable/rounded_backgound">
+
+                <ImageView
+                    android:id="@+id/uex_logo_image"
+                    android:layout_width="@dimen/logo_width"
+                    android:layout_height="@dimen/logo_height"
+                    tools:src="@drawable/ic_university_logo" />
+            </RelativeLayout>
+        </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>
