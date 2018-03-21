@@ -3,21 +3,25 @@ package androidappteam.com.universityexchange;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
+import androidappteam.com.universityexchange.common.University;
 import androidappteam.com.universityexchange.databinding.ActivitySplashBinding;
 import androidappteam.com.universityexchange.firebase.FirebaseHelper;
 import androidappteam.com.universityexchange.firebase.FirebaseManager;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private static final String TAG = "SplashActivity";
+
     private ActivitySplashBinding splashBinding;
-    private HashMap<String, Object> test;
+    private ArrayList<University> universityList;
     private FirebaseHelper firebaseHelper;
 
     @Override
@@ -30,13 +34,14 @@ public class SplashActivity extends AppCompatActivity {
 
         new FirebaseManager()
                 .initialize()
-                .setDatabasePath("https://universityexchange-8075e.firebaseio.com/")
+                .setDatabasePath(getResources().getString(R.string.firebase_db_path))
                 .getReference()
-                .setTableName("TestTable")
+                .setTableName(getResources().getString(R.string.university_table_name))
                 .fetchData(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        firebaseHelper.fetchTestDataFromDatabase(dataSnapshot);
+                        universityList = firebaseHelper.getUniversitiesFromDatabase(SplashActivity.this, dataSnapshot);
+                        logFetchedUniversities();
                     }
 
                     @Override
@@ -72,5 +77,9 @@ public class SplashActivity extends AppCompatActivity {
         splashBinding.uexLogoImage.setImageResource(R.drawable.ic_university_logo);
     }
 
-    //TODO: Add async task loader to fetch data from db
+    private void logFetchedUniversities() {
+        for (University university : universityList) {
+            Log.i(TAG, university.getName() + " - " + university.getCity() + ", " + university.getCountry());
+        }
+    }
 }
