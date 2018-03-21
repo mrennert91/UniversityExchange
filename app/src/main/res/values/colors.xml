@@ -9,4 +9,5 @@
 
     <color name="colorCategoryTitle">#ffffff</color>
     <color name="colorText">#303030</color>
+    <color name="colorTextBlack">#000000</color>
 </resources>

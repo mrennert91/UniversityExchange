@@ -1,9 +1,8 @@
-package androidappteam.com.universityexchange;
+package androidappteam.com.universityexchange.activities;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -11,17 +10,20 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 
+import androidappteam.com.universityexchange.R;
 import androidappteam.com.universityexchange.common.University;
+import androidappteam.com.universityexchange.core.CoreData;
 import androidappteam.com.universityexchange.databinding.ActivitySplashBinding;
 import androidappteam.com.universityexchange.firebase.FirebaseHelper;
 import androidappteam.com.universityexchange.firebase.FirebaseManager;
+import androidappteam.com.universityexchange.helpers.BaseHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
 
     private ActivitySplashBinding splashBinding;
-    private ArrayList<University> universityList;
+    private CoreData coreData;
     private FirebaseHelper firebaseHelper;
 
     @Override
@@ -40,8 +42,8 @@ public class SplashActivity extends AppCompatActivity {
                 .fetchData(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        universityList = firebaseHelper.getUniversitiesFromDatabase(SplashActivity.this, dataSnapshot);
-                        logFetchedUniversities();
+                        storefetchedUniversitiesInCoreData(firebaseHelper.getUniversitiesFromDatabase(SplashActivity.this, dataSnapshot));
+                        BaseHelper.goToNextActivity(SplashActivity.this, PickerActivity.class);
                     }
 
                     @Override
@@ -70,6 +72,7 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         splashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         firebaseHelper = new FirebaseHelper();
+        coreData = CoreData.getInstance();
     }
 
     private void prepareLayoutView() {
@@ -77,9 +80,7 @@ public class SplashActivity extends AppCompatActivity {
         splashBinding.uexLogoImage.setImageResource(R.drawable.ic_university_logo);
     }
 
-    private void logFetchedUniversities() {
-        for (University university : universityList) {
-            Log.i(TAG, university.getName() + " - " + university.getCity() + ", " + university.getCountry());
-        }
+    private void storefetchedUniversitiesInCoreData(ArrayList<University> universitiesList) {
+        coreData.setCoreUniversityList(universitiesList);
     }
 }

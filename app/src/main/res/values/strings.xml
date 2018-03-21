@@ -9,4 +9,12 @@
     <string name="university_column_name">name</string>
     <string name="university_column_city">city</string>
     <string name="university_column_country">country</string>
+
+    <!--PICKER ACTIVITY-->
+    <string name="picker_select_university">Select University:</string>
+    <string name="picker_university_name">University of Science</string>
+    <string name="picker_university_city">London</string>
+    <string name="picker_university_country">United Kingdom</string>
+
+    <string name="exit_press_back_twice">Please click BACK again to exit</string>
 </resources>
