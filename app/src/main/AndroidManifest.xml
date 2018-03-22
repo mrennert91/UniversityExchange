@@ -19,7 +19,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.PickerActivity" />
-        <activity android:name=".activities.HomeActivity"></activity>
+        <activity
+            android:name=".activities.HomeActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activities.PreferencesActivity"
+            android:label="@string/action_preferences"
+            android:parentActivityName=".activities.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
