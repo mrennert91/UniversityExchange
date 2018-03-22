@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import androidappteam.com.universityexchange.R;
 import androidappteam.com.universityexchange.common.University;
+import androidappteam.com.universityexchange.recyclerview.ListItemClickListener;
 import androidappteam.com.universityexchange.recyclerview.holders.UniversitiesViewHolder;
 
 /**
@@ -19,9 +20,11 @@ import androidappteam.com.universityexchange.recyclerview.holders.UniversitiesVi
 public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesViewHolder> {
 
     private ArrayList<University> universities;
+    private final ListItemClickListener onItemClickListener;
 
-    public UniversitiesAdapter(ArrayList<University> universities) {
+    public UniversitiesAdapter(ArrayList<University> universities, ListItemClickListener onItemClickListener) {
         this.universities = universities;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesViewHo
         boolean shouldAttachToParentImmediately = false;
 
         View view = LayoutInflater.from(parent.getContext()).inflate(layoutID, parent, shouldAttachToParentImmediately);
-        return new UniversitiesViewHolder(view);
+        return new UniversitiesViewHolder(view, onItemClickListener);
     }
 
     @SuppressLint("ResourceAsColor")
@@ -40,7 +43,7 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesViewHo
         holder.name.setText(university.getName());
         holder.name.setTextColor(R.color.colorTextBlack);
         holder.picker.setImageResource(R.drawable.icon_arrow_right);
-        holder.divider.setBackgroundColor(R.color.colorBackgroundGreyWithAlpha);
+        holder.divider.setBackgroundColor(R.color.colorBackgroundDivider);
     }
 
     @Override

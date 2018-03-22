@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import androidappteam.com.universityexchange.R;
 import androidappteam.com.universityexchange.common.University;
-import androidappteam.com.universityexchange.core.CoreData;
+import androidappteam.com.universityexchange.core.CorePreference;
 import androidappteam.com.universityexchange.databinding.ActivitySplashBinding;
 import androidappteam.com.universityexchange.firebase.FirebaseHelper;
 import androidappteam.com.universityexchange.firebase.FirebaseManager;
@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
 
     private ActivitySplashBinding splashBinding;
-    private CoreData coreData;
+    private CorePreference corePreference;
     private FirebaseHelper firebaseHelper;
 
     @Override
@@ -72,7 +72,7 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         splashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         firebaseHelper = new FirebaseHelper();
-        coreData = CoreData.getInstance();
+        corePreference = CorePreference.getInstance();
     }
 
     private void prepareLayoutView() {
@@ -81,6 +81,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void storefetchedUniversitiesInCoreData(ArrayList<University> universitiesList) {
-        coreData.setCoreUniversityList(universitiesList);
+        corePreference.setCoreUniversityList(universitiesList);
     }
 }

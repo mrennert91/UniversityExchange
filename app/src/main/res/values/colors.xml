@@ -6,6 +6,7 @@
     <color name="colorAccent">#ff4081</color>
     <color name="colorBackgroundWhite">#ffffff</color>
     <color name="colorBackgroundGreyWithAlpha">#712e2e2e</color>
+    <color name="colorBackgroundDivider">#71a6a6a6</color>
 
     <color name="colorCategoryTitle">#ffffff</color>
     <color name="colorText">#303030</color>

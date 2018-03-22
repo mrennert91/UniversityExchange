@@ -8,18 +8,18 @@ import androidappteam.com.universityexchange.common.University;
  * Created by Matej on 21/03/2018.
  */
 
-public class CoreData {
+public class CorePreference {
 
-    private static CoreData instance;
+    private static CorePreference instance;
 
     private ArrayList<University> coreUniversityList;
 
-    public CoreData() {
+    public CorePreference() {
     }
 
-    public static CoreData getInstance() {
+    public static CorePreference getInstance() {
         if (instance == null) {
-            instance = new CoreData();
+            instance = new CorePreference();
         }
         return instance;
     }

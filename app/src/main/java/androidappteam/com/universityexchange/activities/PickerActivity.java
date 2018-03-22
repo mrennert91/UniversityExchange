@@ -1,5 +1,6 @@
 package androidappteam.com.universityexchange.activities;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,13 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import androidappteam.com.universityexchange.R;
-import androidappteam.com.universityexchange.core.CoreData;
+import androidappteam.com.universityexchange.core.CorePreference;
 import androidappteam.com.universityexchange.databinding.ActivityPickerBinding;
+import androidappteam.com.universityexchange.recyclerview.ListItemClickListener;
 import androidappteam.com.universityexchange.recyclerview.adapters.UniversitiesAdapter;
 
-public class PickerActivity extends AppCompatActivity {
+public class PickerActivity extends AppCompatActivity implements ListItemClickListener {
 
-    private CoreData coreData;
+    private CorePreference corePreference;
     private ActivityPickerBinding pickerBinding;
     private RecyclerView universitiesListPicker;
     private UniversitiesAdapter universitiesAdapter;
@@ -52,7 +54,7 @@ public class PickerActivity extends AppCompatActivity {
     private void prepareNecessaryData() {
         getSupportActionBar().setTitle(getResources().getString(R.string.picker_select_university));
         pickerBinding = DataBindingUtil.setContentView(this, R.layout.activity_picker);
-        coreData = CoreData.getInstance();
+        corePreference = CorePreference.getInstance();
     }
 
     private void prepareLayoutView() {
@@ -61,9 +63,19 @@ public class PickerActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView() {
-        universitiesAdapter = new UniversitiesAdapter(coreData.getCoreUniversityList());
+        universitiesAdapter = new UniversitiesAdapter(corePreference.getCoreUniversityList(), this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         universitiesListPicker.setLayoutManager(layoutManager);
         universitiesListPicker.setAdapter(universitiesAdapter);
+    }
+
+    @Override
+    public void onListItemClickListener(int clickedItemPosition) {
+//THIS IS TEMPORARY SOLUTION UNTIL WE IMPLEMENT APP PREFERENCES AND NEW START APP LOGIC
+//TODO PickerActivity(1): Create logic to fetch all data for selected university and store selected university in preferences
+        Intent intent = new Intent(PickerActivity.this, HomeActivity.class);
+        String universityName = corePreference.getCoreUniversityList().get(clickedItemPosition).getName();
+        intent.putExtra("universityName", universityName);
+        startActivity(intent);
     }
 }
