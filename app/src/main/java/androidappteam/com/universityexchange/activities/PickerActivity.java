@@ -50,6 +50,7 @@ public class PickerActivity extends AppCompatActivity {
     }
 
     private void prepareNecessaryData() {
+        getSupportActionBar().setTitle(getResources().getString(R.string.picker_select_university));
         pickerBinding = DataBindingUtil.setContentView(this, R.layout.activity_picker);
         coreData = CoreData.getInstance();
     }
@@ -57,9 +58,6 @@ public class PickerActivity extends AppCompatActivity {
     private void prepareLayoutView() {
         universitiesListPicker = pickerBinding.universitiesListPicker;
         universitiesListPicker.setBackground(getResources().getDrawable(R.drawable.background_rounded_shadow));
-        pickerBinding.universitiesPickerTitle.setText(getResources().getString(R.string.picker_select_university));
-        pickerBinding.universitiesPickerTitle.setTextColor(getResources().getColor(R.color.colorCategoryTitle));
-        pickerBinding.universitiesPickerTitle.setTextSize(getResources().getDimension(R.dimen.text_size_xsmall));
     }
 
     private void setRecyclerView() {

@@ -14,24 +14,11 @@
             android:orientation="vertical"
             android:background="@color/colorPrimary">
 
-            <TextView
-                android:id="@+id/universities_picker_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/universities_picker_margin_small"
-                android:layout_marginEnd="@dimen/universities_picker_margin_small"
-                android:layout_marginLeft="@dimen/universities_picker_margin_small"
-                android:layout_marginRight="@dimen/universities_picker_margin_small"
-                android:layout_marginStart="@dimen/universities_picker_margin_small"
-                android:layout_marginTop="@dimen/universities_picker_margin_large"
-                tools:text="@string/picker_select_university"
-                tools:textColor="@color/colorCategoryTitle"
-                tools:textSize="@dimen/text_size_xlarge" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/universities_picker_margin_large"
+                android:layout_marginTop="@dimen/universities_picker_margin_large"
                 android:layout_marginEnd="@dimen/universities_picker_margin_small"
                 android:layout_marginLeft="@dimen/universities_picker_margin_small"
                 android:layout_marginRight="@dimen/universities_picker_margin_small"

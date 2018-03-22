@@ -7,19 +7,18 @@
 
     <TextView
         android:id="@+id/university_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/universities_picker_margin_xsmall"
         android:layout_marginEnd="@dimen/universities_picker_margin_small"
-        android:layout_marginLeft="@dimen/universities_picker_margin_small"
-        android:layout_marginRight="@dimen/universities_picker_margin_small"
         android:layout_marginStart="@dimen/universities_picker_margin_small"
         android:layout_marginTop="@dimen/universities_picker_margin_xsmall"
+        android:textColor="@color/colorTextBlack"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/university_pick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/university_column_name"
-        android:textColor="@color/colorTextBlack"
         tools:textSize="@dimen/text_size_large" />
 
     <RelativeLayout
