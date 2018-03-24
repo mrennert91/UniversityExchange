@@ -17,4 +17,7 @@
     <string name="picker_university_country">United Kingdom</string>
 
     <string name="exit_press_back_twice">Please click BACK again to exit</string>
+
+    <!-- Preferences activity -->
+    <string name="action_preferences">Preferences</string>
 </resources>
