@@ -1,6 +1,5 @@
 package androidappteam.com.universityexchange.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,8 +7,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidappteam.com.universityexchange.R;
+import androidappteam.com.universityexchange.helpers.BaseHelper;
+import androidappteam.com.universityexchange.helpers.PreferenceHelper;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private PreferenceHelper preferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +32,19 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_preferences) {
-            Intent intent = new Intent(this, PreferencesActivity.class);
-            startActivity(intent);
+        if (id == R.id.action_preferences) {
+            BaseHelper.goToNextActivity(HomeActivity.this, PreferencesActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private String getUniversityFromPreference() {
-//THIS IS TEMPORARY SOLUTION UNTIL WE IMPLEMENT APP PREFERENCES
-//WHEN USER CHOOSE FIRST TIME UNIVERSITY WE ARE GOING TO STORE IT IN PREFERENCES SO WHEN APP IS STARTED IT WILL
-//JUMP TO THIS WINDOW AND THEN WE ARE GOING TO GET UNIVERSITY NAME FROM PREFERENCE
-//IN ALL SOLUTIONS AT THIS POINT PREFERENCE MUST HAVE STORED UNIVERSITY NAME
-// TODO HomeActivity(1): Fetch university name from preferences and return as String, when done delete above comment
-        Intent intent = getIntent();
-        String universityName = intent.getStringExtra("universityName");
-        return universityName;
+        return preferenceHelper.getPreference(PreferenceHelper.Key.PREF_PICKED_UNIVERSITY, "");
     }
 
     private void prepareNecessaryData() {
+        preferenceHelper = new PreferenceHelper().initialize(this);
         getSupportActionBar().setTitle(getUniversityFromPreference());
     }
 }

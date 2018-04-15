@@ -1,6 +1,5 @@
 package androidappteam.com.universityexchange.activities;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +11,8 @@ import android.widget.Toast;
 import androidappteam.com.universityexchange.R;
 import androidappteam.com.universityexchange.core.CorePreference;
 import androidappteam.com.universityexchange.databinding.ActivityPickerBinding;
+import androidappteam.com.universityexchange.helpers.BaseHelper;
+import androidappteam.com.universityexchange.helpers.PreferenceHelper;
 import androidappteam.com.universityexchange.recyclerview.ListItemClickListener;
 import androidappteam.com.universityexchange.recyclerview.adapters.UniversitiesAdapter;
 
@@ -22,6 +23,7 @@ public class PickerActivity extends AppCompatActivity implements ListItemClickLi
     private RecyclerView universitiesListPicker;
     private UniversitiesAdapter universitiesAdapter;
     private boolean doubleBackToExitPressedOnce = false;
+    private PreferenceHelper preferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class PickerActivity extends AppCompatActivity implements ListItemClickLi
         getSupportActionBar().setTitle(getResources().getString(R.string.picker_select_university));
         pickerBinding = DataBindingUtil.setContentView(this, R.layout.activity_picker);
         corePreference = CorePreference.getInstance();
+        preferenceHelper = new PreferenceHelper().initialize(this);
     }
 
     private void prepareLayoutView() {
@@ -71,11 +74,7 @@ public class PickerActivity extends AppCompatActivity implements ListItemClickLi
 
     @Override
     public void onListItemClickListener(int clickedItemPosition) {
-//THIS IS TEMPORARY SOLUTION UNTIL WE IMPLEMENT APP PREFERENCES AND NEW START APP LOGIC
-//TODO PickerActivity(1): Create logic to fetch all data for selected university and store selected university in preferences
-        Intent intent = new Intent(PickerActivity.this, HomeActivity.class);
-        String universityName = corePreference.getCoreUniversityList().get(clickedItemPosition).getName();
-        intent.putExtra("universityName", universityName);
-        startActivity(intent);
+        preferenceHelper.edit().setPreference(PreferenceHelper.Key.PREF_PICKED_UNIVERSITY, corePreference.getCoreUniversityList().get(clickedItemPosition).getName());
+        BaseHelper.goToNextActivity(PickerActivity.this, HomeActivity.class);
     }
 }

@@ -20,4 +20,5 @@
 
     <!-- Preferences activity -->
     <string name="action_preferences">Preferences</string>
+    <string name="pref_picked_university">Default University</string>
 </resources>
